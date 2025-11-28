@@ -53,7 +53,7 @@ int get_cpu_cores() {
 }
 
 // Fungsi untuk inisialisasi YOLOv5 dengan ONNXRuntime
-bool init_yolo() {
+bool yolo_begin() {
     try {
         ort_env = new Ort::Env(ORT_LOGGING_LEVEL_WARNING, "yolo");
         ort_session_options.SetIntraOpNumThreads(stats.cpu_cores);
@@ -142,7 +142,7 @@ int main(int argc, char* argv[]) {
     gtk_init(&argc, &argv);
     
     // Inisialisasi YOLO
-    if (!init_yolo()) {
+    if (!yolo_begin()) {
         g_print("Failed to initialize YOLO\n");
         return -1;
     }
